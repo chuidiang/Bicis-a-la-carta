@@ -1,0 +1,97 @@
+body {
+	font-family:"verdana";
+	padding:10px 50px;
+	font-size:12px;
+	margin:auto;
+/*	background-image:url("fondo10_1024x768.jpg"); */
+	color:#0000aa;
+	background-color:#546576;
+}
+
+img {
+	border:0px;
+}
+
+#contenido {
+	width:845px;
+	min-width:845px;
+	border:1px black solid;
+	background: #ffffff;
+	padding:5px 20px 20px 20px;
+	margin:auto;
+	
+}
+
+td {
+	border-bottom:1px solid black;
+	padding-left:10px;
+	padding-right:10px;
+	color:blue;
+}
+
+td.euro {
+	text-align:center;
+	padding:10px;
+	border:solid 1px black;
+}
+
+.total {
+	float:right;
+	background:#ddffff;
+	width:auto;
+	padding:10px;
+}
+
+tr {
+	border-left:1px solid black;
+	border-right:1px solid black;
+}
+
+th {
+	border-bottom:1px solid black;
+	background:#0000aa;
+	color:white;
+	text-align:left;
+	padding-left:10px;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+table {
+	width:100%;
+	padding:10px;
+	border-collapse:collapse;
+	background:white;
+}
+
+div#pedir {
+	text-align:right;
+	clear:both;
+}
+
+.filtro {
+	border:0px;
+	margin:0px;
+	font-size:10px;
+	padding:0px;
+	background-color:#eeffff;
+}
+
+.error {
+	background-color:red;
+	color:yellow;
+	padding:10px;
+	border:solid 1px yellow;
+}
+
+.caducado {
+	text-decoration:line-through;
+	color:red;
+}
+
+.grupo {
+	background-color:#ddffff;
+	text-align:center;
+	padding-top:5px;
+	padding-bottom:5px;
+}
