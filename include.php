@@ -64,7 +64,7 @@ function get_foto ($nombre, $foto) {
 	if (file_exists($nombre.".jpg")) {
 		return $nombre.".jpg";
 	}
-	if (!issset($foto)) {
+	if (!isset($foto) || $foto=="") {
 		return "sinfoto.jpg";
 	}
 	return $foto;
@@ -88,6 +88,12 @@ function crea_tabla_pieza ($link) {
 	$sql = 'create table if not exists pieza (id smallint auto_increment primary key, '.
 			'nombre varchar(60) unique, descripcion varchar(256), precio decimal (10,2), '.
 			'tipo smallint, foto varchar(256))';
+	$resultado = mysql_query($sql, $link);
+}
+
+function crea_tabla_reglas ($link) {
+	$sql = 'create table if not exists regla (id smallint auto_increment primary key, '.
+	       'nombre varchar(60) unique, tipo smallint)';
 	$resultado = mysql_query($sql, $link);
 }
 

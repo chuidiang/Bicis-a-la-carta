@@ -13,5 +13,5 @@ $sql = "insert into pieza (nombre,descripcion,precio,tipo,foto) values ('".
 mysql_query ($sql, $link);
 echo mysql_error();
 mysql_close ($link);
-header( 'Location: index.php' ) ;
+header( 'Location: admin_piezas.php' ) ;
 ?>

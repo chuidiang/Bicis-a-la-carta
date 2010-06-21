@@ -4,9 +4,9 @@ session_start();
 en_sesion();
 
 $mensaje = '<html><head></head><body>';
-$mensaje .= '<p>Pedido realizado por : '.$nombre.'</p>';
-$mensaje .= '<p>e-mail : '.$email.'</p>';
-$mensaje .= '<p>telefono : '.$telefono.'</p>';
+$mensaje .= '<p>Pedido realizado por : '.$_POST['nombre'].'</p>';
+$mensaje .= '<p>e-mail : '.$_POST['email'].'</p>';
+$mensaje .= '<p>telefono : '.$_POST['telefono'].'</p>';
 $mensaje .= '<table style="border-collapse:collapse; border:solid 1px black; width=80%;" >';
 $mensaje .= '<tr><th>Tipo pieza</th><th>nombre</th></tr>';
 
@@ -61,8 +61,8 @@ $headers = "MIME-Version: 1.0\r\n";
 $headers .= "Content-type:text/html;charset=iso-8859-1\r\n";
 
 // More headers
-$headers .= 'From: <'.$email_tienda.'>\r\n';
-$headers .= 'Cc: <' .$email .">\r\n";
+$headers .= 'From: <'.$email_tienda.">\r\n";
+$headers .= 'Cc: <'.$_POST['email'].">\r\n";
 $enviado = mail ( $email_tienda , 'Pedido bicicleta' , 
    $mensaje, 
    $headers );
@@ -81,7 +81,7 @@ print_head('Pedido enviado');
 <body>
 <div id="contenido">
 <?php
-print_cabecera('Pedido enviado'); 
+print_cabecera('Pedido enviado');
 if ($enviado) {
 ?>
 <p>El correo se ha enviado con &eacute;xito. Si has puesto tu direcci&oacute;n de correo, recibir&aacute;s una copia</p>

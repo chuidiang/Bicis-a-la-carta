@@ -8,6 +8,7 @@ $link = mysql_connect ('localhost', $user, $password);
 mysql_select_db($db);
 crea_tabla_pieza($link);
 crea_tabla_usuarios($link);
+crea_tabla_reglas($link);
 mysql_close($link);
 header('Location:login.php');
 ?>

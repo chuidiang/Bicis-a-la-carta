@@ -110,25 +110,5 @@ for ($i=0; $i<count($tipo); $i++){
 mysql_close($link);
 ?>
 </div>
-<h2 style="clear:both;">Subir mas trozos de bici</h2>
-<form action="sube-articulo.php" method="post" enctype="multipart/form-data">
-<div><label>Tipo de pieza:</label>
-<select name="tipo">
-<option value="0">cuadro</option>
-<option value="1">sillin</option>
-<option value="2">manillar</option>
-<option value="3">rueda</option>
-</select><br/>
-<label>Nombre :</label>
-<input type="text" name="nombre"></input><br/>
-<label>Descripcion :</label>
-<textarea name="descripcion"></textarea><br/>
-<label>Precio (Euros):</label>
-<input type="text" name="precio"></input><br/>
-<label>Foto:</label>
-<input type="file" name="foto"></input><br/>
-<input type="submit" value="Guardar"/>
-</div>
-</form>
 </body>
 </html>
