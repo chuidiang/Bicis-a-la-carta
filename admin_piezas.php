@@ -51,6 +51,11 @@ if (isset($_POST['subir'])){
 	}
 }
 
+/* borrar regla */
+if (isset($_POST['borra_regla'])){
+	$sql = "delete from regla where id=".$_POST['id_regla'];
+	mysql_query($sql);
+}
 
 print_head($nombre_tienda.': administracion de piezas');
 
@@ -63,16 +68,21 @@ if ($error) {
 }
 ?>
 
-<form method="post">
 <fieldset><legend>Reglas para asignar tipos de piezas</legend>
 <?php
    $sql = "select * from regla";
    $result = mysql_query($sql); 
    while ($row = mysql_fetch_array($result)){
-      echo '<p>Las c&oacute;digos que empiezan por <strong>'.$row['nombre'].'</strong> son <strong>'.
-      $texto_tipo[$tipo[$row['tipo']]].'</strong></p>';
+   	  echo '<form method="post">';
+      echo '<p>Las c&oacute;digos que empiezan por <strong>'.$row['nombre'].'</strong> son <strong>';
+      echo $texto_tipo[$tipo[$row['tipo']]].'</strong>';
+      echo '<input type="hidden" name="id_regla" value="'.$row['id'].'"></input>';
+      echo '<input type="submit" name="borra_regla" value="Borrar" onclick="return confirm(\'Seguro que desea borrar la regla\')"></input>';
+      echo '</p>';
+      echo '</form>';
    }
 ?> 
+<form method="post">
 <label>Nueva regla:<br/>Los c&oacute;digos que empiezan por </label> <input type="text"
 	name="comienzo"></input> <label>son </label> <select name="id_pieza">
 	<?php
