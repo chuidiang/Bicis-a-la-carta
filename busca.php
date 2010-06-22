@@ -7,7 +7,7 @@ print_head($nombre_tienda.': Selecci&oacute;n de piezas');
 <body>
 <div id="contenido"><?php
 $indice = $_GET['tipo'];
-print_cabecera('Selecci&oacute;n/B&uacute;squeda de '.$tipo[$indice]);
+print_cabecera('Selecci&oacute;n/B&uacute;squeda de '.$texto_tipo[$tipo[$indice]]);
 ?>
 <div class="filtro"><?php
 echo '<form method="post" action="busca.php?tipo='.$indice.'">';
@@ -34,7 +34,7 @@ if (($_POST['filtro_descripcion'] != "") && ($_POST['filtro_descripcion'] != nul
 	$sql .= " and upper(descripcion) like '%".strtoupper($_POST['filtro_descripcion'])."%'";
 }
 $result = mysql_query ($sql, $link);
-echo '<h2>Selecci&oacute;n '.$tipo[$indice].'</h2>';
+echo '<h2>Selecci&oacute;n '.$texto_tipo[$tipo[$indice]].'</h2>';
 echo '<table>';
 echo '<tr><th></th><th>nombre</th><th>foto</th><th>descripci&oacute;n</th><th>precio</th></tr>';
 while ($row = mysql_fetch_array($result)) {

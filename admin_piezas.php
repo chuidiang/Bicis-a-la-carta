@@ -41,6 +41,14 @@ if (isset($_POST['subir'])){
 		$error=mysql_error();
 	}
 	fclose($fichero);
+	
+	/* Aplicar las reglas a las piezas recien importadas */
+	$sql = 'select * from regla';
+	$result = mysql_query($sql);
+	while ($row = mysql_fetch_array($result)) {
+		$sql2 = "update pieza set tipo=".$row['tipo']." where nombre like '".$row['nombre']."%' and tipo is null";
+		mysql_query($sql2);
+	}
 }
 
 
