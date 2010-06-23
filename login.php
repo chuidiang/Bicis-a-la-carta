@@ -1,4 +1,4 @@
-<?php 
+<?php
 include ('include.php');
 session_start();
 unset ($_SESSION['sesion']);
@@ -27,9 +27,10 @@ if ($_POST['usuario']){
 				$motivo='<p class="error">Su cuenta ha caducado. P&oacute;ngase en'.
 					' contacto con '.$nombre_tienda.' para que se la vuelvan a activar</p>';
 				$motivo .= $row['fecha_caducidad'];
+			} else {
+				header('Location:index.php');
 			}
-			header('Location:index.php');
-		} 
+		}
 	}
 }
 
@@ -39,19 +40,18 @@ mysql_close($link);
 print_head($nombre_tienda.': Login');
 ?>
 <body>
-<div id="contenido">
-<?php print_cabecera('Introduzca usuario y password'); 
+<div id="contenido"><?php print_cabecera('Introduzca usuario y password'); 
 if ($motivo) {
 	echo $motivo;
 }
 ?>
 <form action="login.php" method="post">
-<div><label>Usuario:</label>
-<input type="text" name="usuario"></input>
-<label>Password :</label></td>
-<input type="password" name="password"></input>
-<input type="submit" value="Entrar"></input>
-</div>
+<div><label>Usuario:</label> <input type="text" name="usuario"></input>
+<label>Password :</label>
+</td>
+<input type="password" name="password"></input> <input type="submit"
+	value="Entrar"></input></div>
 </form>
+
 </body>
 </html>
