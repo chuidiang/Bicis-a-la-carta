@@ -26,7 +26,6 @@ if ($_POST['usuario']){
 			if ($row['fecha_caducidad'] < date('Y-m-d',time())) {
 				$motivo='<p class="error">Su cuenta ha caducado. P&oacute;ngase en'.
 					' contacto con '.$nombre_tienda.' para que se la vuelvan a activar</p>';
-				$motivo .= $row['fecha_caducidad'];
 			} else {
 				header('Location:index.php');
 			}
