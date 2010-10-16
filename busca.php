@@ -28,9 +28,11 @@ $link = mysql_connect ('localhost', $user, $password);
 mysql_select_db($db);
 $sql = "select id,nombre,foto,descripcion,precio from pieza where tipo=".$indice;
 if (($_POST['filtro_precio'] != "") && ($_POST['filtro_precio'] != null)){
+	$_POST['filtro_precio']=escapa_comillas($_POST['filtro_precio']);
 	$sql .= " and precio < ".$_POST['filtro_precio'];
 }
 if (($_POST['filtro_descripcion'] != "") && ($_POST['filtro_descripcion'] != null)){
+	$_POST['filtro_descripcion']=escapa_comillas($_POST['filtro_descripcion']);
 	$sql .= " and upper(descripcion) like '%".strtoupper($_POST['filtro_descripcion'])."%'";
 }
 $result = mysql_query ($sql, $link);

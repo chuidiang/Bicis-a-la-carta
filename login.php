@@ -12,7 +12,7 @@ crea_tabla_usuarios($link);
 
 if ($_POST['usuario']){
 
-
+	$_POST['usuario']=escapa_comillas($_POST['usuario']);
 	$sql = "select id_usuario, password, administrador, fecha_caducidad from usuarios where nombre='".$_POST['usuario']."'";
 	$result = mysql_query ($sql, $link);
 	$motivo='<p class="error">El usuario/contrase&ntilde;a no son v&aacute;lidos</p>';

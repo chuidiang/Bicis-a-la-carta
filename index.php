@@ -24,7 +24,6 @@ mysql_select_db($db);
 $precioTotal=0;
 
 
-
 echo '<p>Vaya seleccionando las piezas que desea para la bici. Cuando termine, ';
 echo 'pulse "Hacer pedido" para revisar el pedido e introducir sus datos de contacto</p>';
 echo '<table>';

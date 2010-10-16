@@ -2,12 +2,15 @@
 
 include ('config.php');
 
-
+/* Tipos de piezas. Las que comienzan con - se consideran separadores en la presentacion.
+ * Los tipos apareceran en el mismo orden en las tablas visibles al usuario.
+ */
 $tipo = array('cuadro','horquilla','-montaje','jgo_direccion','potencia','punos','cable','manillar',
 	'tija_sillin','sillin','cierre_sillin','-ruedas','cubiertas', 'camaras', 'llantas', 'radios',
 	'buje_delantero','buje_trasero', '-grupo', 'mandos_cambio', 'freno_delantero', 'freno_trasero', 
 	'cadena','casete','jgo_bielas', 'desviador', 'cambio_trasero', 'pedales', '-otro', 'extras' ); 
 
+/* Texto visibles para los tipos de piezas de $tipo */
 $texto_tipo = array(
 	'cuadro'=>'Cuadro',
 		'horquilla'=>'Horquilla',
@@ -41,6 +44,8 @@ $texto_tipo = array(
 	       	'extras'=>'extras'
 );
 
+/* Escribe un div con el logo de la tienda y enlace a la url principal,
+ * segun variables definidas en config.php */
 function print_cabecera($titulo) {
 	global $url_tienda, $logo_tienda, $nombre_tienda;
 	echo '<div id="cabecera">';
@@ -49,6 +54,7 @@ function print_cabecera($titulo) {
 	echo '</div>';
 }
 
+/* Escribe los tag html de html y head completos */
 function print_head($titulo) {
 	echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"';
 	echo '"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">';
@@ -60,6 +66,15 @@ function print_head($titulo) {
 	echo '</head>';
 }
 
+/* Devuelve el fichero de foto para una pieza dada.
+ * Si existe un fichero jpg cuyo nombre coincida con el codigo de la pieza,
+ * devuelve ese fichero.
+ * Si no existe ese fichero, pero este seteado el segundo parametro foto que
+ * se le pasa, devuelve ese segundo parametro. Ese segundo parametro deberia ser
+ * el resultado de la consulta a base de datos.
+ * En caso de que no haya nada, devuelve sinfoto.jpg, que es la foto de "imagen
+ * no disponible".
+ */
 function get_foto ($nombre, $foto) {
 	if (file_exists($nombre.".jpg")) {
 		return $nombre.".jpg";
@@ -70,6 +85,10 @@ function get_foto ($nombre, $foto) {
 	return $foto;
 }
 
+/* Crea la tabla de usuarios si no esta creada y le anade un usuario
+ * de administracion por defecto, segun las variables definidas en
+ * config.php
+ */
 function crea_tabla_usuarios ($link) {
 	global $user_admin, $passwd_admin, $email_tienda, $telefono_tienda;
 	$result = mysql_query("show tables like 'usuarios'");
@@ -84,6 +103,7 @@ function crea_tabla_usuarios ($link) {
 	}
 }
 
+/* Crea en base de datos la tabla pieza si no existe */
 function crea_tabla_pieza ($link) {
 	$sql = 'create table if not exists pieza (id smallint auto_increment primary key, '.
 			'nombre varchar(60) unique, descripcion varchar(256), precio decimal (10,2), '.
@@ -91,15 +111,32 @@ function crea_tabla_pieza ($link) {
 	$resultado = mysql_query($sql, $link);
 }
 
+/* Crea en base de datos la talba regla si no existe */
 function crea_tabla_reglas ($link) {
 	$sql = 'create table if not exists regla (id smallint auto_increment primary key, '.
 	       'nombre varchar(60) unique, tipo smallint)';
 	$resultado = mysql_query($sql, $link);
 }
 
+/* Redirige a la pagina de login si no estamos en sesion */
 function en_sesion () {
 	if ($_SESSION['sesion'] != true) {
 		header('Location:login.php');
 	}
 }
+
+/* Escapa las comillas y cambia los caracteres html */
+function escapa_comillas ($cadena){
+	if (!get_magic_quotes_gpc()) {
+		return addslashes($cadena);
+	} else {
+		return $cadena;
+	}
+}
+
+/* Quita escapes a las comillas */
+function quita_escapa_comillas ($cadena){
+	return stripslashes ($cadena);
+}
+
 ?>

@@ -20,6 +20,10 @@ if (isset($_POST['crear'])) {
 		echo '<p class="error">Las passwords no coinciden</p>';
 	} else
 	{
+		$_POST['nombre']=escapa_comillas($_POST['nombre']);
+		$_POST['email']=escapa_comillas($_POST['email']);
+		$_POST['telefono']=escapa_comillas($_POST['telefono']);
+		$_POST['fecha']=escapa_comillas($_POST['fecha']);
 		$sql = "insert into usuarios (nombre, password, email, telefono, fecha_caducidad, administrador ) ".
 			"values ('".$_POST['nombre']."','".md5($_POST['password'])."','".$_POST['email']."','".
 			$_POST['telefono']."','".$_POST['fecha']."', 0)";
@@ -63,6 +67,11 @@ if (isset($_POST['update'])) {
 			echo '<p class="error">Las passwords no coinciden</p>';
 		}
 	}
+	$_POST['nombre']=escapa_comillas($_POST['nombre']);
+	$_POST['email']=escapa_comillas($_POST['email']);
+	$_POST['telefono']=escapa_comillas($_POST['telefono']);
+	$_POST['fecha']=escapa_comillas($_POST['fecha']);
+	
 	$sql="update usuarios set nombre='".$_POST['nombre']."', email='".$_POST['email']."', telefono='".
 		$_POST['telefono']."', fecha_caducidad='".$_POST['fecha']."'";
 	$sql .= $cambio_password;
